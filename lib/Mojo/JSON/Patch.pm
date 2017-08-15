@@ -169,7 +169,7 @@ sub _test {
   my $self = shift;
   my $path = Mojo::Path->new(shift);
   my $val  = shift;
-
+  croak 'TEST: Unsupported operation';
 }
 
 1;
@@ -189,9 +189,9 @@ Mojo::JSON::Patch - JSON Patch
 
 =head1 DESCRIPTION
 
-L<Mojo::JSON::Patch> is an implementation of
-L<RFC 6902|https://tools.ietf.org/html/rfc6902>
-.
+L<Mojo::JSON::Patch> is a partial implementation of L<RFC 6902|https://tools.ietf.org/html/rfc6902>. We do not
+support the specifications `test` operation at present.
+
 =head1 ATTRIBUTES
 
 L<Mojo::JSON::Patch> implements the following attributes.
