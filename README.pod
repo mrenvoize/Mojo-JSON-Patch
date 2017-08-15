@@ -1,0 +1,58 @@
+=encoding utf8
+
+=head1 NAME
+
+Mojo::JSON::Patch - JSON Patch
+
+=head1 SYNOPSIS
+
+  use Mojo::JSON::Patch;
+  my $patch = Mojo::JSON::Patch->new([{op => 'add', path => '/foo', value => 'bar'}]);
+  $patch->apply($document);
+  my $data = $patch->data;
+  
+=head1 DESCRIPTION
+
+L<Mojo::JSON::Patch> is an implementation of
+L<RFC 6902|https://tools.ietf.org/html/rfc6902>
+.
+=head1 ATTRIBUTES
+
+L<Mojo::JSON::Patch> implements the following attributes.
+=head2 operations
+
+  my $operations = $patch->operations;
+  $patch = $patch->operations([{op => 'add', path => '/foo', value => 'bar'}]);
+  
+L<RFC 6902|https://tools.ietf.org/html/rfc6902> compliant JSON data structure containing the operations to apply.
+
+=head2 data
+
+  my $data = $patch->data;
+  $patch = $patch->data({foo => 'bar'});
+  
+L<RFC 4627|https://tools.ietf.org/html/rfc4627> compliant JSON data structure.
+
+=head1 METHODS
+
+L<Mojo::JSON::Patch> inherits all methods from L<Mojo::JSON::Pointer> and implements
+the following new ones.
+
+=head2 apply
+
+  $patch = $patch->apply($document);
+  
+Apply L</"operations"> to L</"data">.
+
+=head2 new
+
+  my $patch = Mojo::JSON::Patch->new;
+  my $patch = Mojo::JSON::Patch->new([{op => 'add', path => '/foo', value => 'bar'}]);
+  
+Build new L<Mojo::JSON::Patch> object.
+
+=head1 SEE ALSO
+
+L<Mojolicious>, L<Mojolicious::Guides>, L<http://mojolicious.org>, L<JSON::Validator>.
+
+=cut
