@@ -15,10 +15,11 @@ Mojo::JSON::Patch - JSON Patch
 
 L<Mojo::JSON::Patch> is an implementation of
 L<RFC 6902|https://tools.ietf.org/html/rfc6902>
-.
+
 =head1 ATTRIBUTES
 
 L<Mojo::JSON::Patch> implements the following attributes.
+
 =head2 operations
 
   my $operations = $patch->operations;
