@@ -2,7 +2,11 @@ package Mojo::JSON::Patch;
 use Mojo::Base 'Mojo::JSON::Pointer';
 
 use Carp 'croak';
+use Exporter 'import';
 use Mojo::Path;
+
+our $VERSION   = '0.01';
+our @EXPORT_OK = 'patch_json';
 
 sub apply {
   my ($self, $patch) = @_;
@@ -17,6 +21,10 @@ sub apply {
 }
 
 sub new { @_ > 1 ? shift->SUPER::new(data => shift) : shift->SUPER::new }
+
+sub patch_json {
+  __PACKAGE__->new($_[0])->apply($_[1]);
+}
 
 sub _add {
   my $self = shift;
@@ -179,7 +187,7 @@ Mojo::JSON::Patch - JSON Patch
 =head1 DESCRIPTION
 
 L<Mojo::JSON::Patch> is an implementation of
-L<RFC 6901|http://tools.ietf.org/html/rfc6901>.
+L<RFC 6902|http://tools.ietf.org/html/rfc6902>.
 
 =head1 ATTRIBUTES
 
@@ -207,12 +215,13 @@ Patch.
   # {foo => 'baz', baz => [4, 5, 6]}
   Mojo::JSON::Patch->new({foo => 'bar', baz => [4, 5, 6]})->apply([{op => 'replace', path => '/foo', value => 'baz'}]);
 
-=head2 new
+=head1 FUNCTIONS
 
-  my $patch = Mojo::JSON::Patch->new;
-  my $patch = Mojo::JSON::Patch->new({foo => 'bar'});
+=head2 patch_json
 
-Build new L<Mojo::JSON::Patch> object.
+  $data = patch_json $data, $patch;
+
+Use an L<RFC 6902|http://tools.ietf.org/html/rfc6902> compliant patch to alter a data structure.
 
 =head1 SEE ALSO
 
